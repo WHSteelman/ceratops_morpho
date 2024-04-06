@@ -1,17 +1,22 @@
 # install required packages if necessary
 # install.packages("geomorph")
+# install.packages("StereoMorph")
 
-# Load required packages
+# Load packages
+library(StereoMorph)
 library(geomorph)
 
-# Read the landmark data from the CSV file
-landmark_data <- read.csv("ceratops_landmarks.csv")
+# Digitize images
+digitizeImages(image.file = "ceratops_images", shapes.file = "ceratops_shapes", landmarks.ref = "landmarks.txt", curves.ref = "curves.txt")
+
+# Read the landmark data 
+#landmark_data <- read.csv("ceratops_landmarks.csv")
+landmark_data <- readShapes("ceratops_shapes")
 
 # Define the species names
-species_names <- c("Triceratops", "Protoceratops")
-
+#species_names <- c("Triceratops", "Protoceratops")
 # Add row names to the matrix
-rownames(landmark_data) <- species_names
+#rownames(landmark_data) <- species_names
 
 # Print matrix
 print(landmark_data)
@@ -59,3 +64,13 @@ par(mfrow=c(1,1))
 par(mfrow=c(1,2))
 plotRefToTarget(M,landmark_gpa$coords[,,2], method="vector", mag=3)
 mtext("Vector Displacements")
+
+
+
+
+# Load packages
+library(StereoMorph)
+library(geomorph)
+
+# Digitize images
+digitizeImages(image.file = "Data/ceratops_images", shapes.file = "Data/ceratops_shapes", landmarks.ref = "Data/landmarks.txt", curves.ref = "Data/curves.txt")
